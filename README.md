@@ -69,10 +69,6 @@ ichain.createClaim(claim)
 // revoke claim
 // POST /claims/{id}/revoke BODY {name: "username", password: "292"}
 ichain.revokeClaim(claim)
-
-// Get claim
-// GET /claims/{id}
-ichain.claim.revoke(claim)
 ```
 
 ## Asset 
