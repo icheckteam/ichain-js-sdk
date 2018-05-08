@@ -2,7 +2,7 @@
 Javascript SDK for the ichain core
 
 ## Keys
-``
+``js
 // POST /keys {name, password, seed}
 ichain.createKey("username", "password", "seed")
 
@@ -18,7 +18,7 @@ ichain.updateKey(new_password, old_password)
 
 ## RPC
 
-```
+```js
 // GET /blocks/latest
 
 // GET /blocks/{height}
