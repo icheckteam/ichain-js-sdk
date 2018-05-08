@@ -14,7 +14,7 @@ ichain.deleteKey(name)
 
 // PUT /keys/{name} {new_password, old_password}
 ichain.updateKey(new_password, old_password)
-``
+```
 
 ## RPC
 
