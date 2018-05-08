@@ -3,7 +3,7 @@ Javascript SDK for the ichain core
 
 
 ## Identity
-```
+```js
 var ichain = require("ichain")
 
 var claim = {
