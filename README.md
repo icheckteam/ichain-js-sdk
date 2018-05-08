@@ -105,7 +105,7 @@ ichain.updateAssetAttribute(assetID, name, type, value)
 
 
 // GET /assets/{id}
-ichain.getAsset(assetID, name, quantity)
+ichain.getAsset(assetID)
 
 
 // POST /assets/{id}/add-quantity {..accountInfo, quantity: 100}
@@ -114,5 +114,8 @@ ichain.addAssetQuantity(assetID, quantity)
 
 // POST /assets/{id}/subtract-quantity {..accountInfo, quantity: 100}
 ichain.subtractAssetQuantity(assetID, quantity)
+
+// POST /assets/{id}/transfer {..accountInfo, quantity: 100, to: "address"}
+ichain.transferAsset(assetID, quantity, to)
 
 ```
