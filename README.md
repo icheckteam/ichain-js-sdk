@@ -2,7 +2,7 @@
 Javascript SDK for the ichain core
 
 ## Keys
-``js
+```js
 // POST /keys {name, password, seed}
 ichain.createKey("username", "password", "seed")
 
@@ -28,6 +28,17 @@ ichain.updateKey(new_password, old_password)
 // txs.concat(block.txs)
 
 // GET /tx/hash
+
+## Example 
+var state {
+  currentHeight: 10,
+  txByID: {1: "{assetId: "34342", to: "2423", from: "aa", "quanttiy": 100}"},
+  txs: [1],
+  account: {
+    assets: [{id: 4x5, name: "tomato", quantity: 100}],
+    txs: [1]
+  }
+}
 ```
 
 
