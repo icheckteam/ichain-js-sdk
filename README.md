@@ -117,24 +117,10 @@ ichain.subtractAssetQuantity(assetID, quantity)
 
 // POST /assets/{id}/transfer {..accountInfo, quantity: 100, to: "address"}
 ichain.transferAsset({
-  inputs: [
-    {
-      address: address1,
-      assets: [
-        {id: asset1, amount: 100},
-        {id: asset2, amount: 100}
-      ]
-    }
-  ],
-  
-  outputs: [
-    {
-      address: address2,
-      assets: [
-        {id: asset1, amount: 100},
-        {id: asset2, amount: 100}
-      ]
-    }
+  to: address1,
+  assets: [
+    {id: asset1, amount: 100},
+    {id: asset2, amount: 100}
   ]
 })
 
