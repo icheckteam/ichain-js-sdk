@@ -1,0 +1,44 @@
+{
+  "name": "ichain-js-sdk",
+  "version": "1.0.0",
+  "description": "Ichain Javascript SDK",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test",
+    "test:unit": "./node_modules/.bin/mocha ./test/unit",
+    "test:integration": "./node_modules/.bin/mocha ./test/integration"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CityOfZion/neon-js.git"
+  },
+  "keywords": [
+    "ichain"
+  ],
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "author": "thangn.1411@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/icheckteam/ichain-js-sdk/issues"
+  },
+  "homepage": "https://github.com/icheckteam/ichain-js-sdk#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.49",
+    "@babel/polyfill": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/register": "^7.0.0-beta.49",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "crypto-js": "^3.1.9-1"
+  }
+}
