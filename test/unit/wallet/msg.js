@@ -1,5 +1,4 @@
-import * as te from '@cityofzion/neon-js'
-import * as M from '../../../src/keys/msg'
+import * as M from '../../../src/wallet/msg'
 import * as utils from '../../../src/utils'
 var keys = [
   {
