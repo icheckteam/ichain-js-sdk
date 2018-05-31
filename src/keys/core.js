@@ -3,7 +3,7 @@ import base58 from 'bs58'
 import { hexstring2ab, ab2hexstring, reverseHex, sha256, hash160, hash256 } from '../utils'
 import secureRandom from 'secure-random'
 
-const curve = new EC('p256')
+const curve = new EC('secp256k1')
 
 /**
  * @param {string} publickey - unencoded public key
@@ -34,7 +34,7 @@ export const getPublicKeyUnencoded = (publicKey) => {
  * @return {string}
  */
 export const getPublicKeyFromPrivateKey = (privateKey, encode = true) => {
-  const curve = new EC('p256')
+  const curve = new EC('secp256k1')
   const keypair = curve.keyFromPrivate(privateKey, 'hex')
   const unencodedPubKey = keypair.getPublic().encode('hex')
   if (encode) {
