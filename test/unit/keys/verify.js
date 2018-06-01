@@ -1,7 +1,4 @@
 import * as V from '../../../src/keys/verify'
-import Key from '../../../src/keys/key'
-import * as core from '../../../src/keys/core'
-
 describe('Key Verification', function () {
   const valid = {
     privateKeys: [
