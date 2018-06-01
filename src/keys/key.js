@@ -2,7 +2,7 @@ import * as core from './core';
 import logger from '../logging'
 import { encrypt, decrypt } from './mintkey'
 const log = logger('keys')
-import { isPrivateKey, isEncryptKey, isAddress } from './verify'
+import { isPrivateKey, isEncryptKey, isAddress, isPublicKey } from './verify'
 
 /**
  * @class Key
@@ -21,6 +21,10 @@ class Key  {
       this.lock = str.lock || false
     } else if (isPrivateKey(str)) {
       this._privateKey = str
+    } else if (isPublicKey(str, false)) {
+      this._publicKey = core.getPublicKeyEncoded(str)
+    } else if (isPublicKey(str, true)) {
+      this._publicKey = str
     } else if (isAddress(str)) {
       this._address = str
     } else if(isEncryptKey(str)) {

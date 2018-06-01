@@ -1,5 +1,5 @@
 import base58 from 'bs58'
-import { getPublicKeyUnencoded } from './core'
+import { getPublicKeyUnencoded, getPublicKeyEncoded } from './core'
 import { ab2hexstring, reverseHex, hash256 } from '../utils';
 /**
  * Checks if hexstring is a valid Private Key. Any hexstring of 64 chars is a valid private key.
@@ -33,6 +33,8 @@ export const isPublicKey = (key, encoded) => {
       default:
         return false
     }
+
+
     const unencoded = getPublicKeyUnencoded(encodedKey)
     const tail = parseInt(unencoded.substr(unencoded.length - 2, 2), 16)
     if (encodedKey.substr(0, 2) === '02' && tail % 2 === 0) return true
