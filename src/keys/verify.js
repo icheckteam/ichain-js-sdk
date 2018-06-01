@@ -1,6 +1,6 @@
 import base58 from 'bs58'
 import { getPublicKeyUnencoded } from './core'
-
+import { ab2hexstring } from '../utils';
 /**
  * Checks if hexstring is a valid Private Key. Any hexstring of 64 chars is a valid private key.
  * @param {string} key
@@ -41,3 +41,20 @@ export const isPublicKey = (key, encoded) => {
   return false
 }
 
+
+
+
+/**
+ * Verifies a Encrypt key. This merely verifies the format. It is unable to verify if it is has been tampered with.
+ * @param {string} encryptKey
+ * @return {boolean}
+ */
+export const isEncryptKey = (encryptKey) => {
+  try {
+    if (encryptKey.length !== 55) return false
+    const hexStr = ab2hexstring(base58.decode(encryptKey))
+    if (!hexStr) return false
+    if (hexStr.length !== 80) return false
+    return true
+  } catch (e) { console.log(e); return false }
+}

@@ -2,7 +2,7 @@ import * as core from './core';
 import logger from '../logging'
 import { encrypt, decrypt } from './mintkey'
 const log = logger('keys')
-import { isPrivateKey } from './verify'
+import { isPrivateKey, isEncryptKey } from './verify'
 
 /**
  * @class Key
@@ -21,6 +21,8 @@ class Key  {
       this.lock = str.lock || false
     } else if (isPrivateKey(str)) {
       this._privateKey = str
+    } else if(isEncryptKey(str)) {
+      this._encrypted = str
     } else {
       throw new ReferenceError(`Invalid input: ${str}`)
     }
@@ -84,8 +86,8 @@ class Key  {
    * @param {object} [scryptParams]
    * @return {Account} this
    */
-  encrypt (keyphrase, scryptParams = undefined) {
-    this._encrypted = encrypt(this.privateKey, keyphrase, scryptParams)
+  async encrypt (keyphrase, scryptParams = undefined) {
+    this._encrypted = await encrypt(this.privateKey, keyphrase, scryptParams)
     return this
   }
 
@@ -95,8 +97,8 @@ class Key  {
    * @param {object} [scryptParams]
    * @return {Account} this
    */
-  decrypt (keyphrase, scryptParams = undefined) {
-    this._privateKey =  decrypt(this.encrypted, keyphrase, scryptParams)
+  async decrypt (keyphrase, scryptParams = undefined) {
+    this._privateKey =  await decrypt(this.encrypted, keyphrase, scryptParams)
     return this
   }
 

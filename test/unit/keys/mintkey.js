@@ -1,7 +1,7 @@
 import * as mintkey from '../../../src/keys/mintkey'
 import testKeys from '../testKeys.json'
 import Key from '../../../src/keys/key'
-import { isPrivateKey } from '../../../src/keys/verify';
+import { isPrivateKey, isEncryptKey } from '../../../src/keys/verify';
 
 describe('Mintkey', function () {
   const simpleScrypt = {
@@ -16,7 +16,7 @@ describe('Mintkey', function () {
     it('encrypt', async () => {
       this.timeout(0)
       encrypted = await mintkey.encrypt(testKeys.a.privateKey, testKeys.a.passphrase)
-      encrypted.should.equal(testKeys.a.encryptedWif)
+      isEncryptKey(encrypted).should.equal(true)
     })
 
     it('decrypt', async () => {
@@ -32,7 +32,7 @@ describe('Mintkey', function () {
 
     it('encrypt', async () => {
       encrypted = await mintkey.encrypt(testKeys.a.privateKey, passphrase, simpleScrypt)
-      encrypted.should.not.equal(undefined)
+      isEncryptKey(encrypted).should.equal(true)
     })
 
     it('decrypt', async () => {
@@ -46,7 +46,7 @@ describe('Mintkey', function () {
     const passphrase = testKeys.c.passphrase
     it('encrypt', async () => {
       encrypted = await mintkey.encrypt(testKeys.a.privateKey, passphrase, simpleScrypt)
-      encrypted.should.not.equal(undefined)
+      isEncryptKey(encrypted).should.equal(true)
     })
     it('decrypt', async () => {
       const privateKey = await mintkey.decrypt(encrypted, passphrase, simpleScrypt)
