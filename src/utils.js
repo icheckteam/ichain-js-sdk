@@ -341,7 +341,7 @@ export class Fixed8 extends BN {
   }
 
   toHex () {
-    const hexstring = this.times(100000000).round(0).toString(16)
+    const hexstring = this.times(100000000).toFixed(0).toString(16)
     return '0'.repeat(16 - hexstring.length) + hexstring
   }
 
@@ -385,8 +385,8 @@ export class Fixed8 extends BN {
    * @param {number} [rm]
    * @return {Fixed8}
    */
-  round (dp = null, rm = null) {
-    return new Fixed8(super.round(dp, rm))
+  toFixed (dp = null, rm = null) {
+    return new Fixed8(super.toFixed(dp, rm))
   }
 
   /**

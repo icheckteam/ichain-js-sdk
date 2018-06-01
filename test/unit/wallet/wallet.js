@@ -1,5 +1,5 @@
 
-import Wallet from '../../../src/wallet/Wallet'
+import Wallet from '../../../src/keys/wallet'
 import simpleWallet from './simpleWallet.json'
 describe('Wallet file', () => {
   describe('Constructor', () => {

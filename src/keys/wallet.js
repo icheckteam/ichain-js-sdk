@@ -1,4 +1,4 @@
-import Account from './Account'
+import Key from './key'
 import { DEFAULT_WALLET } from '../consts'
 import logger from '../logging'
 
@@ -12,20 +12,20 @@ class Wallet {
     this.name = name
     /** @type {string} */
     this.version = version;
-    /** @type {Account[]} */
+    /** @type {Key[]} */
     this.accounts = []
     accounts.map(this.addAccount, this)
   }
 
   /**
    * Adds an account.
-   * @param {Account} account - Account object.
+   * @param {Key} key - Key object.
    * @return {number} Index position of Account in array.
    */
   addAccount(acct) {
     const index = this.accounts.length
-    if (!(acct instanceof Account)) {
-      acct = new Account(acct)
+    if (!(acct instanceof Key)) {
+      acct = new Key(acct)
     }
     this.accounts.push(acct)
     try {
