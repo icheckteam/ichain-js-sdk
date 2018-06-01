@@ -12,9 +12,9 @@ describe('Mintkey', function () {
   }
 
   describe('Basic', function () {
+    this.timeout(0)
     let encrypted
     it('encrypt', async () => {
-      this.timeout(0)
       encrypted = await mintkey.encrypt(testKeys.a.privateKey, testKeys.a.passphrase)
       isEncryptKey(encrypted).should.equal(true)
     })
