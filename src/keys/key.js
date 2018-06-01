@@ -96,7 +96,7 @@ class Key  {
    * @return {Account} this
    */
   decrypt (keyphrase, scryptParams = undefined) {
-    this._privateKey = decrypt(this.encrypted, keyphrase, scryptParams)
+    this._privateKey =  decrypt(this.encrypted, keyphrase, scryptParams)
     return this
   }
 
