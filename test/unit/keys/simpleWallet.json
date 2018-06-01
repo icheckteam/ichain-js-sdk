@@ -1,24 +1,46 @@
 {
   "name": "myWallet",
+  "version": "1.0",
   "scrypt": {
-    "n": 256,
-    "r": 1,
-    "p": 1
+    "n": 16384,
+    "r": 8,
+    "p": 8
   },
   "accounts": [
     {
-      "address": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
-      "label": "a",
+      "address": "355d8af3f6acc3602ddc3faad3f757e57739c538",
+      "name": "a",
       "isDefault": false,
       "lock": false,
-      "key": "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330"
+      "key": "4SaQCvDgNrLpEEbkRpFhW4tK9fSJhnUbkb6vLmBjkusQprnDxEZ6Suz"
     },
     {
-      "address": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
+      "address": "00b362c274d48e418a6bada00cbf35a7c5db22d5",
       "name": "b",
+      "isDefault": false,
+      "lock": false,
+      "key": "3pqbjiWxpQG1ySiFX9n6SFKWCoooLuYWoD7pdBb4BsdMzQztqJzAdqZ"
+    },
+    {
+      "address": "75379109afa5a96ea76692745f52058bc396193b",
+      "name": "c",
       "isDefault": true,
       "lock": false,
-      "key": "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330"
+      "key": "B4oxE6HiF8scz2EKC6LowBvcKqJggxCfEKfwJxPrjh8YntMMVA4PrME"
+    },
+    {
+      "address": "a7a30e55b8d8886c38a0fc164d137bc9c5edbb03",
+      "name": "d",
+      "isDefault": false,
+      "lock": false,
+      "key": "8BDpNobTx5THh4YNxyZ6y896EW1xE5K6odBCirmHYSUmMvrNKASBbYM"
+    },
+    {
+      "address": "739c3c347819ce58978464638b834dfce813e187",
+      "name": "e",
+      "isDefault": false,
+      "lock": false,
+      "key": "2ehpf71nSLgTjKExsq6UVcEvkjzz9kbGWPAhBj11NNXXrgqiKodouBm"
     }
   ]
 }

@@ -1,18 +1,25 @@
 {
-  "name": "MyWallet",
-  "version":"1.0",
+  "name": "myWallet",
+  "version": "1.0",
   "scrypt": {
-    "n": 16384,
-    "r": 8,
-    "p": 8
+    "n": 256,
+    "r": 1,
+    "p": 1
   },
   "accounts": [
     {
-      "address": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
-      "name": "MyAddress",
+      "address": "a7ea3e8949a815b999d21c5a9bc97e8ab92be786",
+      "name": "b",
       "isDefault": false,
       "lock": false,
-      "key": "7wX2VPWUovJXimu4NYgmKrBgfb2Wsu3uabB1n1SWokF7pxJG9B5ayjh"
+      "key": "6JVzQzLpJGjb1br54DpuGfzcRDTcGPyBEx5bEfuSxYUR1Z6qsa3hNRW"
+    },
+    {
+      "address": "917e4e8af34b2af72a94ca29acfe069dc4f46b3f",
+      "name": "c",
+      "isDefault": true,
+      "lock": false,
+      "key": "6bmsALMQrrRxZvppqpagH1uR4SiiZFeJKER3YYw91CGXh2SK4QdfU6J"
     }
   ]
 }

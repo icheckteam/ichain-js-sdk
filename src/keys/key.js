@@ -11,7 +11,7 @@ class Key  {
   constructor(str) {
     this.isDefault = false
     this.lock = false
-    if (str == "") {
+    if (!str) {
       this._privateKey = core.generatePrivateKey()
     } else if (typeof str === 'object') {
       this._encrypted = str.key
