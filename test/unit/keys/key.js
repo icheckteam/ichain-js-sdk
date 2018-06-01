@@ -1,4 +1,5 @@
 import Key from '../../../src/keys/key'
+import testWallet from './testWallet.json'
 describe('Key method', function () {
   const scryptParams = {
     cost: 256,
@@ -23,7 +24,35 @@ describe('Key method', function () {
       k.publicKey.should.equal(acct.publicKey)
       k.address.should.equal(acct.address)
     })
+
+    it('exports to a Wallet Account object', () => {
+      const walletAcct = testWallet.accounts[0]
+      const a = new Key(walletAcct)
+      const result = a.export()
+      result.should.eql(testWallet.accounts[0])
+    })
+
+    it('can be created from Wallet Account object', () => {
+      const walletAcct = testWallet.accounts[0]
+      const a = new Key(walletAcct)
+      a.should.not.equal(undefined)
+      a.encrypted.should.equal(walletAcct.key)
+      a.address.should.equal(walletAcct.address)
+    })
+
+    it('Accepts a partial Account object and setup defaults', () => {
+      const result = new Key({
+        key: acct.encrypted,
+        address: acct.address
+      })
+      result.name.should.equal(acct.address)
+      result.isDefault.should.equal(false)
+      result.lock.should.equal(false)
+    })
+
+
   })
+
 
   it('encrypts the key', async () => {
     const a = new Key(acct.privateKey)
@@ -36,4 +65,12 @@ describe('Key method', function () {
     await a.decrypt(keyphrase, scryptParams)
     a.privateKey.should.equal(acct.privateKey)
   })
+
+  it('throw error when insufficient infomation given', () => {
+    const a = new Key(acct.address)
+    const thrower = () => a.privateKey
+    thrower.should.throw()
+  });
+
+ 
 })

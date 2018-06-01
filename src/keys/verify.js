@@ -1,6 +1,6 @@
 import base58 from 'bs58'
 import { getPublicKeyUnencoded } from './core'
-import { ab2hexstring } from '../utils';
+import { ab2hexstring, reverseHex, hash256 } from '../utils';
 /**
  * Checks if hexstring is a valid Private Key. Any hexstring of 64 chars is a valid private key.
  * @param {string} key
@@ -57,4 +57,16 @@ export const isEncryptKey = (encryptKey) => {
     if (hexStr.length !== 80) return false
     return true
   } catch (e) { console.log(e); return false }
+}
+
+
+/**
+ * Verifies an address using its checksum.
+ * @param {string} address
+ * @return {boolean}
+ */
+export const isAddress = (address) => {
+  try {
+    return address.length == 40
+  } catch (e) { return false }
 }

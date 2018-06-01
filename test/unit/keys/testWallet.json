@@ -1,0 +1,18 @@
+{
+  "name": "MyWallet",
+  "version":"1.0",
+  "scrypt": {
+    "n": 16384,
+    "r": 8,
+    "p": 8
+  },
+  "accounts": [
+    {
+      "address": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
+      "name": "MyAddress",
+      "isDefault": false,
+      "lock": false,
+      "key": "7wX2VPWUovJXimu4NYgmKrBgfb2Wsu3uabB1n1SWokF7pxJG9B5ayjh"
+    }
+  ]
+}

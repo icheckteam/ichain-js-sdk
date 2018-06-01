@@ -2,7 +2,7 @@ import * as core from './core';
 import logger from '../logging'
 import { encrypt, decrypt } from './mintkey'
 const log = logger('keys')
-import { isPrivateKey, isEncryptKey } from './verify'
+import { isPrivateKey, isEncryptKey, isAddress } from './verify'
 
 /**
  * @class Key
@@ -21,10 +21,16 @@ class Key  {
       this.lock = str.lock || false
     } else if (isPrivateKey(str)) {
       this._privateKey = str
+    } else if (isAddress(str)) {
+      this._address = str
     } else if(isEncryptKey(str)) {
       this._encrypted = str
     } else {
       throw new ReferenceError(`Invalid input: ${str}`)
+    }
+    // Attempts to make address the default name of the Account.
+    if (!this.name) {
+      try { this.name = this.address } catch (err) { this.name = '' }
     }
   }
 
@@ -112,7 +118,7 @@ class Key  {
       name: this.name,
       isDefault: this.isDefault,
       lock: this.lock,
-      key: this.encryptedKey,
+      key: this.encrypted,
     }
   }
 }
