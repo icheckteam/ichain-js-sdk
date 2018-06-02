@@ -1,0 +1,13 @@
+
+{
+  "mainnet": {
+    "extra": {
+      "ichainDB": ""
+    }
+  },
+  "testnet": {
+    "extra": {
+      "ichainDB": ""
+    }
+  }
+}

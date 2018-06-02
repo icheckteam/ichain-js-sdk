@@ -57,10 +57,11 @@ export const getAddressFromPublicKey = (publicKey) => {
  * @return {string} Signature. Does not include tx.
  */
 export const generateSignature = (tx, privateKey) => {
+  const msgHash = sha256(tx)
+  const msgHashHex = Buffer.from(msgHash, 'hex')
   let elliptic = new EC('secp256k1')
-  const keypair = curve.keyFromPrivate(privateKey, 'hex')
-  const sig = keypair.sign(Buffer.from( sha256(tx), 'hex'), "hex")
-  return ab2hexstring(sig.toDER())
+  const sig = elliptic.sign(msgHashHex, privateKey, null)
+  return sig.toDER("hex")
 }
 
 /**
