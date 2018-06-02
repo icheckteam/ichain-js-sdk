@@ -1,13 +1,6 @@
-import Key from './key'
-import Wallet from './wallet'
-
-
-export * from './core'
-export * from './verify'
-export * from './mintkey'
-export * from './msg'
-
-export {
-  Key,
-  Wallet,
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
+exports.__esModule = true;
+__export(require("./typings/key"));
