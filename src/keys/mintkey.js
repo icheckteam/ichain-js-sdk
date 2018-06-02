@@ -24,7 +24,7 @@ const log = logger("keys")
  * @param {string} privateKey the privateKey to encrypt
  * @param {string} keyphrase - The password will be encoded as UTF-8 and normalized using Unicode Normalization Form C (NFC).
  * @param {scryptParams} [scryptParams] - Parameters for Scrypt. Defaults to NEP2 specified parameters.
- * @returns {string} The encrypted key in Base58 (Case sensitive).
+ * @returns {Promise} The encrypted key in Base58 (Case sensitive).
  */
 export const encrypt = (privateKey, keyphrase, scryptParams = DEFAULT_SCRYPT) => {
   const account = new Key(privateKey);
@@ -57,7 +57,7 @@ export const encrypt = (privateKey, keyphrase, scryptParams = DEFAULT_SCRYPT) =>
  * @param {string} encryptedKey - The encrypted key (58 chars long).
  * @param {string} keyphrase - The password will be encoded as UTF-8 and normalized using Unicode Normalization Form C (NFC).
  * @param {scryptParams} [scryptParams] - Parameters for Scrypt. Defaults to NEP2 specified parameters.
- * @returns {string} 
+ * @returns {Promise} 
  */
 export const decrypt = (encryptedKey, keyphrase, scryptParams = DEFAULT_SCRYPT) => {
   return new Promise((resolve, reject) => {

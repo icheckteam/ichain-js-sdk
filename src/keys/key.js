@@ -94,22 +94,26 @@ class Key  {
    * Encrypts the current privateKey and return the Account object.
    * @param {string} keyphrase
    * @param {object} [scryptParams]
-   * @return {Account} this
+   * @return {Promise} this
    */
-  async encrypt (keyphrase, scryptParams = undefined) {
-    this._encrypted = await encrypt(this.privateKey, keyphrase, scryptParams)
-    return this
+  encrypt (keyphrase, scryptParams = undefined) {
+    return encrypt(this.privateKey, keyphrase, scryptParams).then(encrypted => {
+      this._encrypted = encrypted;
+      return this
+    })
   }
 
   /**
    * Decrypts the encrypted key and return the Account object.
    * @param {string} keyphrase
    * @param {object} [scryptParams]
-   * @return {Account} this
+   * @return {Promise} this
    */
-  async decrypt (keyphrase, scryptParams = undefined) {
-    this._privateKey =  await decrypt(this.encrypted, keyphrase, scryptParams)
-    return this
+  decrypt (keyphrase, scryptParams = undefined) {
+    return decrypt(this.encrypted, keyphrase, scryptParams).then(privateKey => {
+      this._privateKey = privateKey;
+      return this;
+    });
   }
 
   /**
