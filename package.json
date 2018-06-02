@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "browser": "lib/browser.js",
   "module": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "test": "./node_modules/.bin/mocha ./test  && npm run test:typings",
     "test:unit": "./node_modules/.bin/mocha ./test/unit",
