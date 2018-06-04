@@ -66,6 +66,7 @@ export const sendAsset = (net, from, to, assets) => {
  * @param {string} opts.company the company name 
  * @param {string} opts.email the email of company
  * @param {number} opts.quantity
+ * @return {Promise<Response>} RPC Response
  */
 export const createAsset = (net, issuer, opts) => {
   const endpoint = getAPIEndpoint(net);
@@ -100,10 +101,11 @@ export const createAsset = (net, issuer, opts) => {
  * create new an asset
  * @param {string} net 
  * @param {string} assetId the id of the asset
+ * @return {Promise<Response>} RPC Response
  */
 export const getAsset = (net, assetId) => {
   const endpoint = getAPIEndpoint(net);
-  return axios.post(`${endpoint}/assets/${assetId}`, body);
+  return axios.get(`${endpoint}/assets/${assetId}`);
 }
 
 
@@ -115,6 +117,7 @@ export const getAsset = (net, assetId) => {
  * @param {string} opts.assetId
  * @param {array}  opts.materials the list material of the asset
  * @param {number} opts.quantity 
+ * @return {Promise<Response>} RPC Response
  */
 export const addQuantity = (net, issuer, opts) => {
   const endpoint = getAPIEndpoint(net);
@@ -149,6 +152,7 @@ export const addQuantity = (net, issuer, opts) => {
  * @param {string} issuer the private key of the issuer
  * @param {string} assetId the id of the asset
  * @param {number} quantity the quantity to subtract
+ * @return {Promise<Response>} RPC Response
  */
 export const subtractQuantity = (net, issuer, assetId, quantity ) => {
   const endpoint = getAPIEndpoint(net);
@@ -185,6 +189,7 @@ export const subtractQuantity = (net, issuer, assetId, quantity ) => {
  * @param {string} opts.recipient
  * @param {array} opts.propertipes
  * @param {role} opts.role
+ * @return {Promise<Response>} RPC Response
  */
 export const createProposal = (net, issuer, opts ) => {
   const endpoint = getAPIEndpoint(net);
@@ -224,6 +229,7 @@ export const createProposal = (net, issuer, opts ) => {
  * @param {string} opts.assetId 
  * @param {string} opts.recipient
  * @param {number} opts.response
+ * @return {Promise<Response>} RPC Response
  */
 export const answerProposal = (net, issuer, opts ) => {
   const endpoint = getAPIEndpoint(net);
@@ -261,6 +267,7 @@ export const answerProposal = (net, issuer, opts ) => {
  * @param {string} opts.assetId 
  * @param {string} opts.recipient
  * @param {array} opts.propertipes
+ * @return {Promise<Response>} RPC Response
  */
 export const revokeProposal = (net, issuer, opts ) => {
   const endpoint = getAPIEndpoint(net);
@@ -299,6 +306,7 @@ export const revokeProposal = (net, issuer, opts ) => {
  * @param {string} issuer the private key of the issuer
  * @param {string} assetId the id of the asset
  * @param {array} attributes 
+ * @return {Promise<Response>} RPC Response
  */
 export const updateAttributes = (net, issuer, assetId, attributes ) => {
   const endpoint = getAPIEndpoint(net);

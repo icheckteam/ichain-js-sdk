@@ -69,4 +69,9 @@ describe('Core API', function () {
     ]);
   });
 
+
+  it("getAsset", () => {
+    return asset.getAsset("testnet", "tomato");
+  });
+
 })
