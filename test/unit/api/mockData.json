@@ -12,14 +12,14 @@
           }
         ],
         "from": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "30440220627bbe5788c9d778952bb0581e211c0f2a7f35b3a9b766a6b28ccaf6d8150c250220154a16375a0f6709a64b0448e453c9b82410284576a6afd4970b6d435734f143"
       },
       "response": {
       }
     },
     "createAsset": {
       "url": "https://explorer.icheck.com.vn/api/assets",
-      "body": {
+            "body": {
         "chain_id": "test",
         "sequences": [
           0
@@ -28,8 +28,9 @@
         "asset_id": "tomato",
         "name": "Tomato",
         "company": "Tomato comapny",
+        "quantity": 100,
         "email": "tomato@gmail.com",
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "3046022100c1fd4a6e1d7c8f79170c7e7fb1c7dcd2bfec771c2729c4e3c675a8dae651067c022100c427b67cbd6816bf374cb41adad42d82c6c97f7b0a49f29a66dde0e33080ba2d"
       },
       "response": {
       }
@@ -50,7 +51,7 @@
             "amount": 100
           }
         ],
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "3045022100d190779a51af968da2412b772e53af9f0f3e588312cd8d84d74f1be0298044f002201ca8cf54469c8aedadfb29d2c5bb64db8f2264f3b8c3d975157cdf34de117582"
       },
       "response": {
       }
@@ -65,7 +66,7 @@
           "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
           "quantity": 150,
           "assetId": "tomatoRetailer",
-          "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+          "signature": "3046022100bad2d641ce633f5ef54cc4b889e7327ebbecfb0f017aa7c61eb20b31e76f22ce022100b1e37f43816906e7d53aa343a2dd095c239f6cd90439a0c613a75a0903bf602d"
         },
       "response": {
       }
@@ -85,7 +86,7 @@
           "location"
         ],
         "role": 1,
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "3045022100f3d8cc4f4f8b46d46d6443ebc28fabf448f6e7eed7595dfdb66b11da6954cc9d02205d0148d19b4352c90b58ee431d1412a2dfc551eb2efc819b8cadb1de8b8e24cf"
       },
       "response": {}
     },
@@ -99,7 +100,7 @@
         "asset_id": "tomatoRetailer",
         "recipient": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
         "response": 1,
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "304502201b0380069365b4e61c47ae0eff74e6a7e9db544616c6663ce5979d4cca6ea144022100b5779a76bc47f4ac9b4b36547aac49e9f8dfd913b4e3eb1da08cfe49a4a60f82"
       },
       "response": {}
     },
@@ -113,7 +114,7 @@
         "asset_id": "tomatoRetailer",
         "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
         "recipient": "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330",
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "3045022100a355f84f2a5957e2a9a6f669be114b570ee60ce65eb005b4fa552f336182202202200bcec2fe6c55ccfeaec41776c6e97146f1afb3c60248dcc35e4f3c291d18eae4"
       },
       "response": {}
     },
@@ -132,7 +133,7 @@
             "number_value": 100
           }
         ],
-        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        "signature": "3044022024d77699cf7f3aa3c3b36f7d1e47dc5e6801afeabcb8ef749e6528a7b3377a5902205ab58e8a267b4b0fc975d26c8fcac002d3903d32a2143e6579d0065a38aaad76"
       },
       "response": {}
     },
@@ -171,7 +172,7 @@
       "url": "https://explorer.icheck.com.vn/api/accounts/ABC",
       "response": {
         "address": "ABC",
-        "createdAt": "111"
+        "created_at": 1528100960
       }
     },
 
@@ -182,8 +183,108 @@
           "context": "demo",
           "metadata": {
             "issuer": "1",
-            "recipient": "2"
+            "recipient": "2",
+            "expires": 1528100960,
+            "created_at": 1528100960
           }
+        }
+      ]
+    },
+
+    "getHistoryWeightOfAsset": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomato/history/weight",
+      "response": [
+        {
+          "name": "weight",
+          "number_value": 100,
+          "reporter": "addr",
+          "created_at": 1528100960
+        },
+
+        {
+          "name": "weight",
+          "number_value": 150,
+          "reporter": "addr",
+          "created_at": 1528100960
+        }
+      ]
+    },
+
+    "getHistoryQuantityOfAsset": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomato/history/quantity",
+      "response": [
+        {
+          "name": "quantity",
+          "number_value": 100,
+          "reporter": "addr",
+          "created_at": 1528100960
+        },
+
+        {
+          "name": "quantity",
+          "number_value": 150,
+          "reporter": "addr",
+          "created_at": 1528100960
+        }
+      ]
+    },
+
+     "getPriceHistory": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomato/history/price",
+      "response": [
+        {
+          "name": "price",
+          "number_value": 100,
+          "reporter": "addr",
+          "created_at": 1528100960
+        },
+
+        {
+          "name": "price",
+          "number_value": 150,
+          "reporter": "addr",
+          "created_at": 1528100960
+        }
+      ]
+    },
+
+    "getLocationHistory": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomato/history/location",
+      "response": [
+        {
+          "name": "location",
+          "location_value": {
+            "latitude": 1,
+            "longitude": 2
+          },
+          "reporter": "addr",
+          "created_at": 1528100960
+        },
+
+        {
+          "name": "location",
+          "location_value": {
+            "latitude": 1,
+            "longitude": 2
+          },
+          "reporter": "addr",
+          "created_at": 1528100960
+        }
+      ]
+    },
+
+    "getMaterialsOfAsset": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomato/materials",
+      "response": [
+        {
+          "asset_id": "Tomato sub",
+          "name": "tomato",
+          "amount": 1000
+        },
+        {
+          "asset_id": "Aggs",
+          "name": "aggs",
+          "amount": 1000
         }
       ]
     }

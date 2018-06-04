@@ -10,11 +10,11 @@ export const serializeTx = (tx) => {
   return JSON.stringify({
     chain_id: tx.chain_id,
     sequences: tx.sequences,
-    fee_bytes: base64.encode(tx.fee || {
+    fee_bytes: base64.encode(JSON.stringify(tx.fee || {
       amount: [],
       gas: 0,
-    }),
-    msg_bytes: base64.encode(tx.msg),
+    })),
+    msg_bytes: base64.encode(JSON.stringify(tx.msg)),
     alt_bytes: null,
   })
 }

@@ -74,4 +74,24 @@ describe('Core API', function () {
     return asset.getAsset("testnet", "tomato");
   });
 
+
+  it("getHistory Weight", () => {
+    return asset.getHistory("testnet", "tomato", "weight");
+  });
+
+  it("getHistory Price", () => {
+    return asset.getHistory("testnet", "tomato", "price");
+  });
+
+  it("getHistory location", () => {
+    return asset.getHistory("testnet", "tomato", "location");
+  });
+
+  it("getHistory quantity", () => {
+    return asset.getHistory("testnet", "tomato", "quantity");
+  });
+
+  it("getMaterials", () => {
+    return asset.getMaterials("testnet", "tomato");
+  });
 })

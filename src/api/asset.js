@@ -45,7 +45,6 @@ export const sendAsset = (net, from, to, assets) => {
     },
   }
   const signature = signMsg(serializeTx(tx), from)
-
   const body = {
     chain_id: tx.chain_id,
     sequence: tx.sequences[0],
@@ -77,6 +76,7 @@ export const createAsset = (net, issuer, opts) => {
     msg: {
       issuer: issuerAcc.address.toUpperCase(),
       id: opts.id,
+      quantity: opts.quantity,
       name: opts.name,
       company: opts.company,
       email: opts.email,
@@ -90,6 +90,7 @@ export const createAsset = (net, issuer, opts) => {
     asset_id: opts.id,
     name: opts.name,
     company: opts.company,
+    quantity: opts.quantity,
     email: opts.email,
     signature: signature,
   }
@@ -333,4 +334,30 @@ export const updateAttributes = (net, issuer, assetId, attributes ) => {
   }
   const url = `${endpoint}/assets/${assetId}/update-attribute`
   return axios.post(url, body);
+}
+
+
+/**
+ * get history
+ * @param {string} net 
+ * @param {string} assetId 
+ * @param {string} attributeName
+ * @return {Promise<Response>} RPC Response
+ */
+export const getHistory = (net, assetId, attributeName ) => {
+  const url = `${getAPIEndpoint(net)}/assets/${assetId}/history/${attributeName}`
+  return axios.get(url);
+}
+
+
+/**
+ * get materials
+ * @param {string} net 
+ * @param {string} assetId 
+ * @param {string} attributeName
+ * @return {Promise<Response>} RPC Response
+ */
+export const getMaterials = (net, assetId ) => {
+  const url = `${getAPIEndpoint(net)}/assets/${assetId}/materials`
+  return axios.get(url);
 }
