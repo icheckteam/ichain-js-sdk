@@ -39,6 +39,7 @@
     "@babel/preset-env": "^7.0.0-beta.49",
     "@babel/register": "^7.0.0-beta.49",
     "@types/loglevel": "^1.5.3",
+    "axios-mock-adapter": "^1.15.0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-minify-webpack-plugin": "^0.3.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -54,6 +55,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "base-64": "^0.1.0",
     "bignumber.js": "^7.2.1",
     "bs58": "^4.0.1",
     "bs58check": "^2.1.1",
