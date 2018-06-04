@@ -2,12 +2,12 @@
 {
   "mainnet": {
     "extra": {
-      "ichainDB": ""
+      "ichainDB": "https://explorer.icheck.com.vn/api"
     }
   },
   "testnet": {
     "extra": {
-      "ichainDB": ""
+      "ichainDB": "https://explorer.icheck.com.vn/api"
     }
   }
 }

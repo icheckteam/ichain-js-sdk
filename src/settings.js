@@ -1,3 +1,3 @@
 import defaultNetworks from './networks.json'
 
-export const networks = {}
+export const networks = defaultNetworks

@@ -1,0 +1,21 @@
+{
+  "ichainDB": {
+    "sendAsset": {
+      "url": "https://explorer.icheck.com.vn/api/accounts/7c2bb42a8be69791ec763e51f5a49bcd41e82237/send",
+      "body": {
+        "chain_id": "test",
+        "sequence": 0,
+        "amount": [
+          {
+            "denom": "1",
+            "amount": 10
+          }
+        ],
+        "from": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {
+      }
+    }
+  }
+}
