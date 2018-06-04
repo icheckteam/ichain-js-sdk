@@ -1,7 +1,6 @@
 import { ec as EC } from 'elliptic'
 import base58 from 'bs58'
 import { hexstring2ab, ab2hexstring, reverseHex, sha256, hash160, hash256, str2hexstring } from '../utils'
-import secureRandom from 'secure-random'
 const curve = new EC('secp256k1')
 
 /**
@@ -57,10 +56,11 @@ export const getAddressFromPublicKey = (publicKey) => {
  * @return {string} Signature. Does not include tx.
  */
 export const generateSignature = (tx, privateKey) => {
+  const msgHash = sha256(tx)
+  const msgHashHex = Buffer.from(msgHash, 'hex')
   let elliptic = new EC('secp256k1')
-  const keypair = curve.keyFromPrivate(privateKey, 'hex')
-  const sig = keypair.sign(Buffer.from( sha256(tx), 'hex'), "hex")
-  return ab2hexstring(sig.toDER())
+  const sig = elliptic.sign(msgHashHex, privateKey, null)
+  return sig.toDER("hex")
 }
 
 /**
@@ -68,14 +68,5 @@ export const generateSignature = (tx, privateKey) => {
  * @returns {string}
  */
 export const generatePrivateKey = () => {
-  return ab2hexstring(secureRandom(32))
-}
-
-/**
- * Generates a arrayBuffer filled with random bits.
- * @param {number} length - Length of buffer.
- * @returns {ArrayBuffer}
- */
-export const generateRandomArray = (length) => {
-  return secureRandom(length)
+  return curve.genKeyPair().getPrivate("hex")
 }

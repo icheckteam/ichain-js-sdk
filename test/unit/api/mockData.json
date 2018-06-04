@@ -1,0 +1,140 @@
+{
+  "ichainDB": {
+    "sendAsset": {
+      "url": "https://explorer.icheck.com.vn/api/accounts/7c2bb42a8be69791ec763e51f5a49bcd41e82237/send",
+      "body": {
+        "chain_id": "test",
+        "sequence": 0,
+        "amount": [
+          {
+            "denom": "1",
+            "amount": 10
+          }
+        ],
+        "from": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {
+      }
+    },
+    "createAsset": {
+      "url": "https://explorer.icheck.com.vn/api/assets",
+      "body": {
+        "chain_id": "test",
+        "sequences": [
+          0
+        ],
+        "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+        "asset_id": "tomato",
+        "name": "Tomato",
+        "company": "Tomato comapny",
+        "email": "tomato@gmail.com",
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {
+      }
+    },
+    "addQuantity": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomatoRetailer/add-quantity",
+      "body":{
+        "chain_id": "test",
+        "sequences": [
+          0
+        ],
+        "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+        "quantity": 100,
+        "assetId": "tomatoRetailer",
+        "materials": [
+          {
+            "asset_id": "tomato",
+            "amount": 100
+          }
+        ],
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {
+      }
+    },
+    "subtractQuantity": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomatoRetailer/subtract-quantity",
+      "body":{
+          "chain_id": "test",
+          "sequences": [
+            0
+          ],
+          "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+          "quantity": 150,
+          "assetId": "tomatoRetailer",
+          "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+        },
+      "response": {
+      }
+    },
+    "createProposal": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomatoRetailer/create-proposal",
+      "body": {
+        "chain_id": "test",
+        "sequences": [
+          0
+        ],
+        "asset_id": "tomatoRetailer",
+        "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+        "recipient": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
+        "propertipes": [
+          "height",
+          "location"
+        ],
+        "role": 1,
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {}
+    },
+    "answerProposal": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomatoRetailer/answer-proposal",
+      "body": {
+        "chain_id": "test",
+        "sequences": [
+          0
+        ],
+        "asset_id": "tomatoRetailer",
+        "recipient": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+        "response": 1,
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {}
+    },
+    "revokeProposal": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomatoRetailer/revoke-proposal",
+      "body": {
+        "chain_id": "test",
+        "sequences": [
+          0
+        ],
+        "asset_id": "tomatoRetailer",
+        "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+        "recipient": "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330",
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {}
+    },
+    "updateAttribute": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomatoRetailer/update-attribute",
+      "body": {
+        "chain_id": "test",
+        "sequences": [
+          0
+        ],
+        "issuer": "7C2BB42A8BE69791EC763E51F5A49BCD41E82237",
+        "asset_id": "tomatoRetailer",
+        "attributes": [
+          {
+            "name": "weight",
+            "number_value": 100
+          }
+        ],
+        "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
+      },
+      "response": {}
+    }
+  }
+}
