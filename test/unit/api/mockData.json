@@ -135,6 +135,57 @@
         "signature": "3045022063f55dea0d4fcbe436427a4f4d21b112799eed9f18c9431546916c59146f18f0022100f5f310ad73a8ede58feb896590cdedaa00cd978eefd4eac4de5f3db375fcfba6"
       },
       "response": {}
+    },
+
+
+    "listAssetsOfAccount": {
+      "url": "https://explorer.icheck.com.vn/api/accounts/ABC/assets",
+      "response": [
+          {
+            "asset_id": "tomato",
+            "name": "Tomato",
+            "amount": 100
+          },
+          {
+            "asset_id": "eggs",
+            "name": "Eggs",
+            "amount": 100
+          }
+      ]
+    },
+
+    "getAsset": {
+      "url": "https://explorer.icheck.com.vn/api/assets/tomato",
+      "response": {
+        "id": "tomato",
+        "issuer": "issuer",
+        "quantity": "100",
+        "email": "tomato@gmail.com",
+        "company": "Tomato comapny",
+        "name": "Tomato"
+      }
+    },
+
+
+    "getAccount": {
+      "url": "https://explorer.icheck.com.vn/api/accounts/ABC",
+      "response": {
+        "address": "ABC",
+        "createdAt": "111"
+      }
+    },
+
+    "getIdentitiesOfAccount": {
+      "url": "https://explorer.icheck.com.vn/api/accounts/ABC/identities",
+      "response": [
+        {
+          "context": "demo",
+          "metadata": {
+            "issuer": "1",
+            "recipient": "2"
+          }
+        }
+      ]
     }
   }
 }
