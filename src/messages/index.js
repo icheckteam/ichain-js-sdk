@@ -1,7 +1,12 @@
-import MsgDelegate from './delegate'
-import MsgUnbond from './unbond'
-
-export {
-  MsgDelegate,
-  MsgUnbond
-}
+export *  from './delegate'
+export * from './unbond'
+export * from './add-quantity'
+export * from './attribute'
+export * from './create-asset'
+export * from './material'
+export * from './msg-add-materials'
+export * from './msg-answer-proposal'
+export * from './msg-create-proposal'
+export * from './msg-revoke-proposal'
+export * from './subtract-quantity'
+export * from './update-attributes'

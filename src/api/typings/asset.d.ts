@@ -1,3 +1,4 @@
+import { MsgCreateAsset, MsgAddQuantity, MsgSubtractQuantity, MsgUpdateAttribute, MsgCreateProposal, MsgAnswerProposal } from "../../messages";
 
 
 export interface AssetAmount {
@@ -58,14 +59,28 @@ export interface AddQuantity {
   materials: Array<Material>
 }
 
+export interface Options {
+  net?: string
+  privateKey?: string
+
+  asset?: MsgCreateAsset
+  addQuantity?: MsgAddQuantity
+  subtractQuantity?: MsgSubtractQuantity
+  updateAttributes?: MsgUpdateAttribute
+  proposal?: MsgCreateProposal
+  answerProposal: MsgAnswerProposal,
+  revokeProposal: RevokeProposal
+}
+
+
 // asset ...
 export function sendAsset(net: string, from: string, to: string, assets: Array<AssetAmount>): Promise<Response>
-export function createAsset(net: string, issuer: string, asset: Asset): Promise<Response>
-export function addQuantity(net: string, issuer: string, opts: AddQuantity): Promise<Response>
-export function subtractQuantity(net: string, issuer: string, assetId: string, quantity: number): Promise<Response>
-export function updateAttributes(net: string, issuer: string, assetId: string, attributes: Array<Attribute>): Promise<Response>
+export function createAsset(opts: Options): Promise<Response>
+export function addQuantity(opts: Options): Promise<Response>
+export function subtractQuantity(opts: Options): Promise<Response>
+export function updateAttributes(opts: Options): Promise<Response>
 
 // proposal ...
-export function createProposal(net: string, issuer: string, opts: Proposal): Promise<Response>
-export function answerProposal(net: string, issuer: string, opts: AnswerProposal): Promise<Response>
-export function revokeProposal(net: string, issuer: string, opts: RevokeProposal): Promise<Response>
+export function createProposal(opts: Options): Promise<Response>
+export function answerProposal(opts: Options): Promise<Response>
+export function revokeProposal(opts: Options): Promise<Response>
