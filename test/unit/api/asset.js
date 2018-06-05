@@ -1,8 +1,14 @@
 import * as asset from '../../../src/api/asset'
 import testKeys from '../testKeys.json'
 import mockData from './mockData.json'
+import MsgCreateAsset from '../../../src/messages/create-asset';
 describe('Core API', function () {
   let mock
+
+  let baseOptions = {
+    net: "testnet",
+    privateKey: testKeys.a.privateKey,
+  }
 
   before(() => {
     mock = setupMock([mockData.ichainDB])
@@ -17,56 +23,77 @@ describe('Core API', function () {
   });
 
   it("createAsset", () => {
-    return asset.createAsset("testnet", testKeys.a.privateKey, {
-      id: "tomato",
-      name: "Tomato",
-      quantity: 100,
-      company: "Tomato comapny",
-      email: "tomato@gmail.com"
-    });
+    return asset.createAsset(Object.assign(baseOptions, {
+      asset: {
+        issuer: testKeys.a.address,
+        id: "tomato",
+        name: "Tomato",
+      }
+    }));
   });
 
   it("addQuantity", () => {
-    return asset.addQuantity("testnet", testKeys.a.privateKey, {
-      assetId: "tomatoRetailer",
-      quantity: 100,
-      materials: [
-        { asset_id: "tomato", amount: 100}
-      ]
-    });
+    return asset.addQuantity(Object.assign(baseOptions, {
+      addQuantity: {
+        issuer: testKeys.a.address,
+        id: "tomato",
+        name: "Tomato",
+        quantity: 1,
+        materials: [],
+      }
+    }));
   });
 
   it("subtractQuantity", () => {
-    return asset.subtractQuantity("testnet", testKeys.a.privateKey, "tomatoRetailer", 150);
+    return asset.subtractQuantity(Object.assign(baseOptions, {
+      subtractQuantity: {
+        issuer: testKeys.a.address,
+        id: "tomato",
+        quantity: 1,
+      }
+    }));
   });
 
   it("createProposal", () => {
-    return asset.createProposal("testnet", testKeys.a.privateKey, {
-      assetId: "tomatoRetailer",
-      recipient: testKeys.b.address,
-      propertipes: ["height", "location"],
-      role: 1,
-    });
+    return asset.createProposal(Object.assign(baseOptions, {
+      proposal: {
+        asset_id: "tomato",
+        issuer: testKeys.a.address,
+        recipient: testKeys.b.recipient,
+        propertipes: ["weight"],
+        role: 1,
+      }
+    }));
   });
 
   it("answerProposal", () => {
-    return asset.answerProposal("testnet", testKeys.a.privateKey, {
-      assetId: "tomatoRetailer",
-      response: 1,
-    });
+    return asset.answerProposal(Object.assign(baseOptions, {
+      answerProposal: {
+        asset_id: "tomato",
+        recipient: testKeys.b.recipient,
+        response: 1,
+      }
+    }));
   });
 
   it("revokeProposal", () => {
-    return asset.revokeProposal("testnet", testKeys.a.privateKey, {
-      assetId: "tomatoRetailer",
-      recipient: testKeys.a.privateKey,
-      propertipes: ["height"],
-    });
+    return asset.revokeProposal(Object.assign(baseOptions, {
+      revokeProposal: {
+        asset_id: "tomato",
+        issuer: testKeys.a.address,
+        recipient: testKeys.b.recipient,
+        propertipes: ["weight"],
+      }
+    }));
   });
   it("updateAttributes", () => {
-    return asset.updateAttributes("testnet", testKeys.a.privateKey, "tomatoRetailer", [
-      {name: "weight", number_value: 100}
-    ]);
+    return asset.updateAttributes(Object.assign(baseOptions, {
+      updateAttributes: {
+        issuer: testKeys.a.address,
+        id: "tomato",
+        attributes: []
+      },
+    }));
   });
 
 

@@ -5,17 +5,16 @@ import Key from '../keys/key'
 import base64 from 'base-64'
 import { networks } from '../settings'
 import { serializeTx } from '../transactions/core';
+import { getAPIEndpoint } from './core';
+import MsgCreateAsset from '../messages/create-asset';
+import MsgAddQuantity from '../messages/add-quantity';
+import MsgSubtractQuantity from '../messages/subtract-quantity';
+import MsgCreateProposal from '../messages/msg-create-proposal';
+import MsgAnswerProposal from '../messages/msg-answer-proposal';
+import MsgRevokeProposal from '../messages/msg-revoke-proposal';
+import MsgUpdateAttributes from '../messages/update-attributes';
 const log = logger('api')
 
-/**
- * API Switch for MainNet and TestNet
- * @param {string} net - 'mainet', 'testnet', or custom ichain-db URL.
- * @return {string} URL of API endpoint.
- */
-export const getAPIEndpoint = net => {
-  if (networks[net]) return networks[net].extra.ichainDB
-  return net
-}
 
 /**
  * Send an asset to an account 
@@ -46,53 +45,34 @@ export const sendAsset = (net, from, to, assets) => {
   }
   const signature = signMsg(serializeTx(tx), from)
   const body = {
-    chain_id: tx.chain_id,
-    sequence: tx.sequences[0],
-    amount: assets,
-    from: fromAcct.address,
-    signature: signature,
+    msg: tx.msg,
+    signatures: [signature],
   }
-  return axios.post(`${endpoint}/accounts/${fromAcct.address}/send`, body);
+  const url = `${endpoint}/accounts/${fromAcct.address}/send`;
+  return axios.post(url, body);
 }
 
 /**
  * create new an asset
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
- * @param {options} opts 
- * @param {string} opts.id the id of the asset
- * @param {string} opts.name the name of the asset
- * @param {string} opts.company the company name 
- * @param {string} opts.email the email of company
- * @param {number} opts.quantity
+ * @param {object} opts 
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgCreateAsset} opt.asset
  * @return {Promise<Response>} RPC Response
  */
-export const createAsset = (net, issuer, opts) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const createAsset = (opts) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      issuer: issuerAcc.address.toUpperCase(),
-      id: opts.id,
-      quantity: opts.quantity,
-      name: opts.name,
-      company: opts.company,
-      email: opts.email,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.asset,
   }
-  const signature = signMsg(serializeTx(tx), issuerAcc.privateKey)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-    issuer: issuerAcc.address.toUpperCase(),
-    asset_id: opts.id,
-    name: opts.name,
-    company: opts.company,
-    quantity: opts.quantity,
-    email: opts.email,
-    signature: signature,
+    msg: opts.asset,
+    signatures: [signature],
   }
   return axios.post(`${endpoint}/assets`, body);
 }
@@ -112,190 +92,135 @@ export const getAsset = (net, assetId) => {
 
 /**
  * add quantity for the asset
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
  * @param {object} opts 
- * @param {string} opts.assetId
- * @param {array}  opts.materials the list material of the asset
- * @param {number} opts.quantity 
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgAddQuantity} opts.addQuantity 
  * @return {Promise<Response>} RPC Response
  */
-export const addQuantity = (net, issuer, opts) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const addQuantity = (opts) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      issuer: issuerAcc.address.toUpperCase(),
-      id: opts.assetId,
-      quantity: opts.quantity,
-      materials: opts.materials,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.addQuantity,
   }
-  const signature = signMsg(serializeTx(tx), issuerAcc.privateKey)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-    issuer: issuerAcc.address.toUpperCase(),
-    quantity: opts.quantity,
-    assetId: opts.assetId,
-    materials: opts.materials,
-    signature: signature,
+    msg: opts.addQuantity,
+    signatures: [signature],
   }
-  const url = `${endpoint}/assets/${opts.assetId}/add-quantity`;
+  const url = `${endpoint}/assets/${opts.addQuantity.id}/add-quantity`;
   return axios.post(url, body);
 }
 
 /**
  * subtract quantity
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
- * @param {string} assetId the id of the asset
- * @param {number} quantity the quantity to subtract
+ * @param {object} opts 
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgSubtractQuantity} opts.subtractQuantity 
  * @return {Promise<Response>} RPC Response
  */
-export const subtractQuantity = (net, issuer, assetId, quantity ) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const subtractQuantity = (opts ) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      issuer: issuerAcc.address.toUpperCase(),
-      id: assetId,
-      quantity: quantity,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.subtractQuantity,
   }
-  const signature = signMsg(serializeTx(tx), issuerAcc.privateKey)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-    issuer: issuerAcc.address.toUpperCase(),
-    quantity: quantity,
-    assetId: assetId,
-    signature: signature,
+    msg: opts.subtractQuantity,
+    signature: [signature],
   }
-  const url = `${endpoint}/assets/${assetId}/subtract-quantity`
+  const url = `${endpoint}/assets/${opts.subtractQuantity.id}/subtract-quantity`
+  
   return axios.post(url, body);
 }
 
 
 /**
  * create proposal
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
  * @param {object} opts 
- * @param {string} opts.assetId 
- * @param {string} opts.recipient
- * @param {array} opts.propertipes
- * @param {role} opts.role
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgCreateProposal} opts.proposal 
  * @return {Promise<Response>} RPC Response
  */
-export const createProposal = (net, issuer, opts ) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const createProposal = (opts) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      asset_id: opts.assetId,
-      issuer: issuerAcc.address.toUpperCase(),
-      recipient: opts.recipient,
-      propertipes: opts.propertipes,
-      role: opts.role,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.proposal,
   }
-  const signature = signMsg(serializeTx(tx), issuer)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-
-    asset_id: opts.assetId,
-    issuer: issuerAcc.address.toUpperCase(),
-    recipient: opts.recipient,
-    propertipes: opts.propertipes,
-    role: opts.role,
-    signature: signature
+   msg: opts.proposal,
+   signatures: [signature]
   }
-  const url = `${endpoint}/assets/${opts.assetId}/create-proposal`
+  const url = `${endpoint}/assets/${opts.proposal.asset_id}/create-proposal`
   return axios.post(url, body);
 }
 
 /**
  * answer proposal
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
  * @param {object} opts 
- * @param {string} opts.assetId 
- * @param {string} opts.recipient
- * @param {number} opts.response
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgAnswerProposal} opts.answerProposal 
  * @return {Promise<Response>} RPC Response
  */
-export const answerProposal = (net, issuer, opts ) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const answerProposal = (opts ) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      asset_id: opts.assetId,
-      recipient: issuerAcc.address.toUpperCase(),
-      response: opts.response,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.answerProposal
   }
-  const signature = signMsg(serializeTx(tx), issuer)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-
-    asset_id: opts.assetId,
-    recipient: issuerAcc.address.toUpperCase(),
-    response: opts.response,
-
-    signature: signature
+    msg: opts.answerProposal,
+    signatures: [signature]
   }
-  const url = `${endpoint}/assets/${opts.assetId}/answer-proposal`
+  const url = `${endpoint}/assets/${opts.answerProposal.asset_id}/answer-proposal`
+  
   return axios.post(url, body);
 }
 
 
 /**
  * revoke proposal
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
  * @param {object} opts 
- * @param {string} opts.assetId 
- * @param {string} opts.recipient
- * @param {array} opts.propertipes
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgRevokeProposal} opts.revokeProposal 
  * @return {Promise<Response>} RPC Response
  */
-export const revokeProposal = (net, issuer, opts ) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const revokeProposal = (opts ) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      asset_id: opts.assetId,
-      issuer: issuerAcc.address.toUpperCase(),
-      recipient: opts.recipient,
-      response: opts.response,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.revokeProposal,
   }
-  const signature = signMsg(serializeTx(tx), issuerAcc.privateKey)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-
-    asset_id: opts.assetId,
-    issuer: issuerAcc.address.toUpperCase(),
-    recipient: opts.recipient,
-    response: opts.response,
-    
-    signature: signature
+    msg: opts.revokeProposal,
+    signatures: [signature]
   }
-  const url =`${endpoint}/assets/${opts.assetId}/revoke-proposal`
+  const url =`${endpoint}/assets/${opts.revokeProposal.asset_id}/revoke-proposal`
   return axios.post(url, body);
 }
 
@@ -303,36 +228,27 @@ export const revokeProposal = (net, issuer, opts ) => {
 
 /**
  * update attributes
- * @param {string} net 
- * @param {string} issuer the private key of the issuer
- * @param {string} assetId the id of the asset
- * @param {array} attributes 
+ * @param {object} opts 
+ * @param {string} opts.net 
+ * @param {string} opts.privateKey 
+ * @param {number} opts.sequence
+ * @param {string} opts.chainId
+ * @param {MsgUpdateAttributes} opts.updateAttributes 
  * @return {Promise<Response>} RPC Response
  */
-export const updateAttributes = (net, issuer, assetId, attributes ) => {
-  const endpoint = getAPIEndpoint(net);
-  const issuerAcc = new Key(issuer)
+export const updateAttributes = (opts ) => {
+  const endpoint = getAPIEndpoint(opts.net);
   var tx = {
-    chain_id: "test",
-    sequences: [0],
-    msg: {
-      issuer: issuerAcc.address.toUpperCase(),
-      id: assetId,
-      attributes: attributes,
-    },
+    chain_id: opts.chainId,
+    sequences: [opts.sequence],
+    msg: opts.updateAttributes,
   }
-  const signature = signMsg(serializeTx(tx), issuerAcc.privateKey)
+  const signature = signMsg(serializeTx(tx), opts.privateKey)
   const body = {
-    chain_id: "test",
-    sequences: [0],
-
-    issuer: issuerAcc.address.toUpperCase(),
-    asset_id: assetId,
-    attributes: attributes,
-    
-    signature: signature
+    msg: opts.updateAttributes,
+    signatures: [signature]
   }
-  const url = `${endpoint}/assets/${assetId}/update-attribute`
+  const url = `${endpoint}/assets/${opts.updateAttributes.id}/update-attribute`
   return axios.post(url, body);
 }
 
