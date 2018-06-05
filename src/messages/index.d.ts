@@ -91,3 +91,24 @@ export interface MsgUpdateAttribute {
   issuer: string 
   attributes: Attribute[]
 }
+
+export interface MsgCreateClaim {
+  id: string 
+  context: string 
+  content: object
+  metadata: ClaimMetadata
+}
+
+export interface ClaimMetadata {
+  create_time: string
+  issuer: string 
+  recipient: string
+  expires: string 
+  revocation: string
+}
+
+export interface MsgRevokeClaim {
+  claim_id: string
+  owner: string 
+  revocation: string
+}

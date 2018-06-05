@@ -1,7 +1,7 @@
 import * as stake from '../../../src/api/stake'
 import testKeys from '../testKeys.json'
 import mockData from './mockData.json'
-describe('Core API', function () {
+describe('Stake API', function () {
   let mock
 
   before(() => {

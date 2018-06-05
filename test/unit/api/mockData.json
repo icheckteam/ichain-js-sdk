@@ -316,6 +316,41 @@
           "3043021f0ee99367547703d8f439e9c648650037ff38192265571888971f07485c16fe02206782a1164d0e57ad023aabd2f8c1455031f2952fed833893e41b2b09387470e9"
         ]
       }
+    },
+
+    "createClaim": {
+  "url": "https://explorer.icheck.com.vn/api/claims",
+  "body": {
+    "msg": {
+      "id": "claim1",
+      "context": "context",
+      "content": {
+        "name": "1"
+      },
+      "metadata": {
+        "create_time": 1528100960
+      }
+    },
+    "signatures": [
+      "3046022100b35fa3614f92aa861c3b66c1e7fbd592e5a8db95b92dae775ee0af601c97083d022100eee004eca66f449587f4ea3a46940a6b840680d4bbbb59bc899842de806fb148"
+    ]
+  },
+  "response": {}
+},
+
+    "revokeClaim": {
+      "url": "https://explorer.icheck.com.vn/api/claims/1",
+      "body": {
+        "msg": {
+          "claim_id": "1",
+          "owner": "7c2bb42a8be69791ec763e51f5a49bcd41e82237",
+          "revocation": "revocation test"
+        },
+        "signatures": [
+          "3046022100a0dacf458152f236fdf91af367c6d03c0372093c63d099e05272eec72027d54c022100f462403228d2c0231b0d3a7d8b4538538b2c3d70d5c6d91c02b7e5eda1a9568e"
+        ]
+      },
+      "response": {}
     }
   }
 }

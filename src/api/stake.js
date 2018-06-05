@@ -2,7 +2,7 @@ import axios from 'axios'
 import { MsgDelegate, MsgUnbond } from "../messages";
 import { getAPIEndpoint } from "./core";
 import { signMsg } from "../keys/msg";
-import { serializeTx } from "../transactions/core";
+import { serializeTx } from "./core";
 
 /**
  * edit delegations

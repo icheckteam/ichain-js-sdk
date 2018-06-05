@@ -2,7 +2,7 @@ import * as asset from '../../../src/api/asset'
 import testKeys from '../testKeys.json'
 import mockData from './mockData.json'
 import MsgCreateAsset from '../../../src/messages/create-asset';
-describe('Core API', function () {
+describe('Asset API', function () {
   let mock
 
   let baseOptions = {

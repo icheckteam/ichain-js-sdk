@@ -4,7 +4,7 @@ import { signMsg } from '../keys/msg'
 import Key from '../keys/key'
 import base64 from 'base-64'
 import { networks } from '../settings'
-import { serializeTx } from '../transactions/core';
+import { serializeTx } from './core';
 import { getAPIEndpoint } from './core';
 import MsgCreateAsset from '../messages/create-asset';
 import MsgAddQuantity from '../messages/add-quantity';
