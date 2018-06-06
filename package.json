@@ -1,6 +1,6 @@
 {
   "name": "ichain-js-sdk",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Ichain Javascript SDK",
   "main": "lib/index.js",
   "browser": "lib/browser.js",
