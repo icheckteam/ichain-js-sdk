@@ -106,7 +106,7 @@ class Wallet {
       return this.accounts[index].decrypt(keyphrase, this.scrypt).then(() => {
         resolve(true)
       }).catch(() => {
-        resolve(true)
+        resolve(false)
       })
     });
   }
@@ -138,7 +138,7 @@ class Wallet {
       this.accounts[index].encrypt(keyphrase, this.scrypt).then(() => {
         resolve(true)
       }).catch(() => {
-        resolve(true)
+        resolve(false)
       })
     });
   }
