@@ -66,8 +66,7 @@
     "loglevel-plugin-prefix": "^0.8.3",
     "scrypt-js": "^2.0.3",
     "secure-random": "^1.1.1",
-    "util": "^0.10.3",
-    "wif": "^2.0.6"
+    "util": "^0.10.3"
   },
   "directories": {
     "doc": "docs",
