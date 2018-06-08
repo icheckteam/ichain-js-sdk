@@ -9,5 +9,5 @@ The project is a javascript sdk for the Ichain Blockchain. It supports digital i
 ### Installation 
 
 ```
-npm install ichain-js-sdk 
+npm install @icheck/ichain-js-sdk 
 ```
