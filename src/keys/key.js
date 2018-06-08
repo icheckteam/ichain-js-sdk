@@ -97,7 +97,7 @@ class Key  {
    * @return {Promise} this
    */
   encrypt (keyphrase, scryptParams = undefined) {
-    return encrypt(this.privateKey, keyphrase, scryptParams).then(encrypted => {
+    return encrypt(this._privateKey, keyphrase, scryptParams).then(encrypted => {
       this._encrypted = encrypted;
       return this
     })

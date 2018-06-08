@@ -103,8 +103,13 @@ class Wallet {
     return new Promise((resolve, reject) => {
       if (index < 0) return reject(new Error('Index cannot be negative!'))
       if (index >= this.accounts.length) return reject(new Error('Index cannot larger than Accounts array!'))
-      return this.accounts[index].decrypt(keyphrase, this.scrypt).then(() => {
-        resolve(true)
+      const account = this.accounts[index];
+      return account.decrypt(keyphrase, this.scrypt).then(() => {
+        if (account._privateKey) {
+          resolve(true)
+          return;
+        }
+        resolve(false)
       }).catch(() => {
         resolve(false)
       })
@@ -135,8 +140,13 @@ class Wallet {
     return new Promise((resolve, reject) => {
       if (index < 0) return reject(new Error('Index cannot be negative!'))
       if (index >= this.accounts.length) return reject(new Error('Index cannot larger than Accounts array!'))
-      this.accounts[index].encrypt(keyphrase, this.scrypt).then(() => {
-        resolve(true)
+      const account = this.accounts[index];
+      account.encrypt(keyphrase, this.scrypt).then(() => {
+        if (account._encrypted) {
+          resolve(true);
+          return;
+        }
+        resolve(false)
       }).catch(() => {
         resolve(false)
       })
